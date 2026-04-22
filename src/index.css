@@ -1,0 +1,133 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-theme-accent: #7C5DFA;
+  --color-theme-accent-hover: #9277FF;
+  --color-theme-danger: #EC5757;
+  --color-theme-danger-hover: #FF9797;
+  --color-theme-success: #33D69F;
+  --color-theme-warning: #FF8F00;
+  
+  /* Structure Backgrounds */
+  --color-theme-bg: #F8F8FB;
+  --color-theme-bg-dark: #141625;
+  --color-theme-card: #FFFFFF;
+  --color-theme-card-dark: #1E2139;
+  --color-theme-sidebar: #373B53;
+  --color-theme-sidebar-dark: #1E2139;
+  
+  /* Text Colors */
+  --color-theme-text: #0C0E16;
+  --color-theme-text-dark: #FFFFFF;
+  --color-theme-secondary: #888EB0;
+  --color-theme-secondary-dark: #DFE3FA;
+  
+  /* Border Colors */
+  --color-theme-border: #DFE3FA;
+  --color-theme-border-dark: #252945;
+  
+  /* Inputs & Buttons Overrides */
+  --color-theme-btn-light-bg: #F9FAFE;
+  --color-theme-btn-light-hover: #DFE3FA;
+  --color-theme-btn-light-text: #7E88C3;
+  
+  --color-theme-btn-dark: #373B53;
+  --color-theme-btn-dark-hover: #0C0E16;
+  --color-theme-btn-dark-darker-hover: #1E2139;
+  
+  --color-theme-btn-dkbg: #252945;
+
+  /* Badges */
+  --color-theme-draft: #373B53;
+  --color-theme-draft-bg: rgba(55, 59, 83, 0.05);
+  --color-theme-warning-bg: rgba(255, 143, 0, 0.05);
+  --color-theme-success-bg: rgba(51, 214, 159, 0.05);
+
+  --font-sans: "League Spartan", sans-serif;
+}
+
+@layer base {
+  @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;700&display=swap');
+
+  body {
+    @apply antialiased font-sans bg-theme-bg text-theme-text transition-colors duration-200 dark:bg-theme-bg-dark dark:text-theme-text-dark;
+    font-family: var(--font-sans, "League Spartan", sans-serif);
+  }
+  
+  h1 { @apply text-[32px] font-bold tracking-[-1px] leading-[36px]; }
+  h2 { @apply text-[20px] font-bold tracking-[-0.63px] leading-[22px]; }
+  h3 { @apply text-[16px] font-bold tracking-[-0.8px] leading-[24px]; }
+  h4 { @apply text-[12px] font-bold tracking-[-0.25px] leading-[15px]; }
+  
+  p, span, div, label, input, button, select {
+    @apply text-[12px] font-medium tracking-[-0.25px] leading-[15px];
+  }
+}
+
+@layer components {
+  /* Forms */
+  .form-input {
+    @apply w-full p-4 rounded bg-theme-card dark:bg-theme-card-dark 
+           border border-theme-border dark:border-theme-border-dark
+           text-theme-text dark:text-theme-text-dark
+           focus:outline-none focus:border-theme-accent focus:ring-1 focus:ring-theme-accent
+           transition-colors;
+  }
+  
+  .form-input.error {
+    @apply border-theme-danger focus:border-theme-danger focus:ring-theme-danger;
+  }
+  
+  .form-label {
+    @apply block mb-2 text-theme-secondary dark:text-theme-secondary-dark;
+  }
+
+  /* Buttons */
+  .btn {
+    @apply px-6 py-4 rounded-full font-[700] text-[15px] tracking-[-0.25px] 
+           inline-flex items-center justify-center gap-2 transition-all leading-none
+           active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100;
+  }
+  
+  .btn-primary {
+    @apply bg-theme-accent text-white hover:bg-theme-accent-hover;
+  }
+  
+  .btn-secondary {
+    @apply bg-theme-btn-light-bg text-theme-btn-light-text hover:bg-theme-btn-light-hover;
+  }
+  
+  :is(.dark) .btn-secondary {
+    @apply bg-theme-btn-dkbg text-theme-secondary-dark hover:bg-white hover:text-theme-btn-light-text;
+  }
+  
+  .btn-dark {
+    @apply bg-theme-btn-dark text-[#888EB0] hover:bg-theme-btn-dark-hover;
+  }
+  
+  :is(.dark) .btn-dark {
+    @apply bg-theme-btn-dark text-theme-secondary-dark hover:bg-theme-btn-dark-darker-hover;
+  }
+  
+  .btn-danger {
+    @apply bg-theme-danger text-white hover:bg-theme-danger-hover;
+  }
+}
+
+/* Animations */
+@keyframes slideInLeft {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+.animate-slideInLeft {
+  animation: slideInLeft 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.animate-fadeIn {
+  animation: fadeIn 0.2s ease-out;
+}
