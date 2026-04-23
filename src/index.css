@@ -2,6 +2,8 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
+  --font-sans: "League Spartan", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  
   --color-theme-accent: #7C5DFA;
   --color-theme-accent-hover: #9277FF;
   --color-theme-danger: #EC5757;
@@ -20,7 +22,7 @@
   /* Text Colors */
   --color-theme-text: #0C0E16;
   --color-theme-text-dark: #FFFFFF;
-  --color-theme-secondary: #888EB0;
+  --color-theme-secondary: #7E88C3;
   --color-theme-secondary-dark: #DFE3FA;
   
   /* Border Colors */
@@ -43,16 +45,11 @@
   --color-theme-draft-bg: rgba(55, 59, 83, 0.05);
   --color-theme-warning-bg: rgba(255, 143, 0, 0.05);
   --color-theme-success-bg: rgba(51, 214, 159, 0.05);
-
-  --font-sans: "League Spartan", sans-serif;
 }
 
 @layer base {
-  @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;700&display=swap');
-
   body {
     @apply antialiased font-sans bg-theme-bg text-theme-text transition-colors duration-200 dark:bg-theme-bg-dark dark:text-theme-text-dark;
-    font-family: var(--font-sans, "League Spartan", sans-serif);
   }
   
   h1 { @apply text-[32px] font-bold tracking-[-1px] leading-[36px]; }

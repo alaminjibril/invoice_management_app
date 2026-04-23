@@ -89,7 +89,7 @@ export default function InvoiceDetail({ invoice, onBack, onEdit, onDelete, onSta
             <thead className="hidden md:table-header-group">
               <tr className="text-left text-[13px] font-medium text-theme-secondary dark:text-theme-secondary-dark border-b border-transparent">
                 <th className="py-8 px-8 font-medium">Item Name</th>
-                <th className="py-8 font-medium text-center font-family">QTY.</th>
+                <th className="py-8 font-medium text-center">QTY.</th>
                 <th className="py-8 font-medium text-right">Price</th>
                 <th className="py-8 px-8 font-medium text-right">Total</th>
               </tr>

@@ -248,8 +248,8 @@ export default function InvoiceForm({ invoice, invoices, onSave, onCancel }) {
               {values.items.map((item, index) => {
                 const itemErr = errors.itemsList && errors.itemsList[index] ? errors.itemsList[index] : {};
                 return (
-                  <div key={item.id} className="grid grid-cols-[1fr_1fr_1fr_auto] md:grid-cols-[3fr_1fr_1fr_1fr_auto] gap-4 items-center">
-                    <div className="col-span-3 md:col-span-1">
+                  <div key={item.id} className="grid grid-cols-[64px_100px_1fr_auto] md:grid-cols-[3fr_1fr_1fr_1fr_auto] gap-x-4 gap-y-6 items-start">
+                    <div className="col-span-full md:col-span-1">
                       <label className="form-label md:hidden">Item Name</label>
                       <input
                         type="text"
@@ -258,38 +258,44 @@ export default function InvoiceForm({ invoice, invoices, onSave, onCancel }) {
                         onChange={(e) => handleItemChange(item.id, 'name', e.target.value)}
                       />
                     </div>
-                    <div>
+                    
+                    <div className="md:col-span-1">
                       <label className="form-label md:hidden">Qty.</label>
                       <input
                         type="number"
                         min="1"
-                        className={`form-input px-2 text-center ${itemErr.quantity ? 'border-theme-danger' : ''}font-bold`}
+                        className={`form-input px-2 text-center ${itemErr.quantity ? 'border-theme-danger' : ''} font-bold`}
                         value={item.quantity}
                         onChange={(e) => handleItemChange(item.id, 'quantity', e.target.value)}
                       />
                     </div>
-                    <div>
+                    
+                    <div className="md:col-span-1">
                       <label className="form-label md:hidden">Price</label>
                       <input
                         type="number"
                         step="0.01"
                         min="0"
-                        className={`form-input px-2 ${itemErr.price ? 'border-theme-danger' : ''}font-bold`}
+                        className={`form-input px-2 ${itemErr.price ? 'border-theme-danger' : ''} font-bold`}
                         value={item.price}
                         onChange={(e) => handleItemChange(item.id, 'price', e.target.value)}
                       />
                     </div>
-                    <div className="flex flex-col h-full justify-center">
+                    
+                    <div className="md:col-span-1 flex flex-col h-full justify-start">
                       <label className="form-label md:hidden">Total</label>
-                      <div className="text-theme-secondary dark:text-theme-secondary-dark font-bold bg-transparent pt-3 md:pt-0">
+                      <div className="text-theme-secondary dark:text-theme-secondary-dark font-bold bg-transparent pt-4 md:pt-4">
                         {item.total.toFixed(2)}
                       </div>
                     </div>
-                    <button type="button" className="text-[#888EB0] hover:text-theme-danger transition-colors self-end pb-4 md:self-center md:pb-0" onClick={() => handleRemoveItem(item.id)}>
-                      <svg width="13" height="16" xmlns="http://www.w3.org/2000/svg" className="fill-current">
-                        <path d="M11.583 3.556v10.666c0 .982-.795 1.778-1.777 1.778H3.194a1.777 1.777 0 01-1.777-1.778V3.556h10.166zM8.45 0l1.272 1.277h3.278v1.778H0V1.277h3.278L4.55 0h3.899z" fillRule="nonzero" />
-                      </svg>
-                    </button>
+
+                    <div className="h-full flex items-center pt-8 md:pt-4">
+                      <button type="button" className="text-[#888EB0] hover:text-theme-danger transition-colors" onClick={() => handleRemoveItem(item.id)}>
+                        <svg width="13" height="16" xmlns="http://www.w3.org/2000/svg" className="fill-current">
+                          <path d="M11.583 3.556v10.666c0 .982-.795 1.778-1.777 1.778H3.194a1.777 1.777 0 01-1.777-1.778V3.556h10.166zM8.45 0l1.272 1.277h3.278v1.778H0V1.277h3.278L4.55 0h3.899z" fillRule="nonzero" />
+                        </svg>
+                      </button>
+                    </div>
                   </div>
                 );
               })}
